@@ -1,2 +1,2 @@
 # svlcf-be
-SVLCF Backend
+SVLCF Backend service

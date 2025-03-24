@@ -1,0 +1,64 @@
+Folders Needed: in the path C:\Data\OneDrive
+    Balance
+    DbBackUpData
+    Duplicate
+    Images
+    Invoices
+    Logs
+    Stock
+    Sales
+    UserReport
+    UnitTest - 9 folders
+
+SQL queries:
+    use svlcfdb;
+
+    show tables;
+
+    desc user;
+    desc payment;
+    desc stock;
+    desc sales;
+    desc product;
+    desc expense;
+    desc svlcf;
+    desc balance_report;
+    desc stock_report;
+    desc old_stock;
+    desc cash_account_switch;
+    desc pre_balance;
+
+    select count(*) from user;
+    select count(*) from payment;
+    select count(*) from stock;
+    select count(*) from sales;
+    select count(*) from product;
+    select count(*) from expense;
+    select count(*) from svlcf;
+    select count(*) from balance_report;
+    select count(*) from stock_report;
+    select count(*) from old_stock;
+    select count(*) from cash_account_switch;
+    select count(*) from pre_balance;
+
+Docker:
+    SONAR
+        docker run --network svlcfbe-mysql-net -d --name sonar --link svlcfmysql:svlcfmysql -p 9000:9000 -p 9092:9092 -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar -e "SONARQUBE_JDBC_URL=jdbc:mysql://mysql:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true" sonarqube
+        mvn clean verify sonar:sonar -Dsonar.projectKey=svlcf -Dsonar.projectName='svlcf' -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_b9e53612f49a7e1d0d6a54fb7173d8303ae1438c
+
+    Network
+        docker network ls
+        docker network create svlcfbe-mysql-net
+
+    MySqlDB
+        docker run --name svlcfmysql --network svlcfbe-mysql-net -p 3306:3306 -e MYSQL_ROOT_PASSWORD=svlcfdb -e MYSQL_DATABASE=svlcfdb -d mysql:latest
+
+    Svlcf-BE
+        docker build -t svlcfbe .
+        docker run --network svlcfbe-mysql-net --name svlcfbe -e TZ=Asia/Kolkata -p 9001:9001 -v C:\Data\OneDrive:/home/Data -d svlcfbe:latest
+
+    Prometheus
+        docker run --network svlcfbe-mysql-net -d --name prometheus -p 9090:9090 -v D:\WorkSpace\SreeVLCF\svlcf-backend\src\main\resources\prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+
+    Grafana
+        docker run --network svlcfbe-mysql-net -d --name grafana -p 3000:3000 grafana/grafana
