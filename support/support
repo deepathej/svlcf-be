@@ -43,7 +43,7 @@ SQL queries:
 
 Docker:
     SONAR
-        docker run --network svlcfbe-mysql-net -d --name sonar --link svlcfmysql:svlcfmysql -p 9000:9000 -p 9092:9092 -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar -e "SONARQUBE_JDBC_URL=jdbc:mysql://mysql:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true" sonarqube
+        docker run --network svlcf-net -d --name sonar --link svlcfmysql:svlcfmysql -p 9000:9000 -p 9092:9092 -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar -e "SONARQUBE_JDBC_URL=jdbc:mysql://mysql:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true" sonarqube
         mvn clean verify sonar:sonar -Dsonar.projectKey=svlcf -Dsonar.projectName='svlcf' -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_b9e53612f49a7e1d0d6a54fb7173d8303ae1438c
 
     Network
@@ -51,11 +51,11 @@ Docker:
         docker network create svlcfbe-mysql-net
 
     MySqlDB
-        docker run --name svlcfmysql --network svlcfbe-mysql-net -p 3306:3306 -e MYSQL_ROOT_PASSWORD=svlcfdb -e MYSQL_DATABASE=svlcfdb -d mysql:latest
+        docker run --name svlcfmysql --network svlcf-net -p 3306:3306 -e MYSQL_ROOT_PASSWORD=svlcfdb -e MYSQL_DATABASE=svlcfdb -d mysql:latest
 
     Svlcf-BE
         docker build -t svlcfbe .
-        docker run --network svlcfbe-mysql-net --name svlcfbe -e TZ=Asia/Kolkata -p 9001:9001 -v C:\Data\OneDrive:/home/Data -d svlcfbe:latest
+        docker run --network svlcf-net --name svlcfbe -e TZ=Asia/Kolkata -p 9001:9001 -v C:\Data\OneDrive:/home/Data -d svlcfbe:latest
 
     Prometheus
         docker run --network svlcfbe-mysql-net -d --name prometheus -p 9090:9090 -v D:\WorkSpace\SreeVLCF\svlcf-backend\src\main\resources\prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus

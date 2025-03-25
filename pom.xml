@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.lv2cd</groupId>
-	<artifactId>svlcf</artifactId>
+	<artifactId>svlcfbe</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>svlcf</name>
-	<description>SVLCF Service</description>
+	<name>svlcfbe</name>
+	<description>SVLCF BE Service</description>
 	<properties>
 		<java.version>17</java.version>
 		<openpdf.version>2.0.3</openpdf.version>
@@ -87,7 +87,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>svlcf</finalName>
+		<finalName>svlcfbe</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
