@@ -1,0 +1,11 @@
+{
+  "id": 10000,
+  "userId": 10003,
+  "invoiceNumber": 9223372036854775807,
+  "item": "HERITAGE_MILK MAGIC",
+  "quantity": 10,
+  "variant": 60,
+  "price": 1400,
+  "amount": 14000,
+  "date": "05-03-2024"
+}

@@ -145,6 +145,7 @@ public class Constants {
 
   // Numerical constants
   public static final Long L_ONE = 1L;
+  public static final Long L_TWO = 2L;
   public static final Long L_STOCK_INVOICE_NUMBER = 9223372036854775807L;
   public static final Long L_TECHNICAL_USERID = 171L;
   public static final int I_ZERO = 0;

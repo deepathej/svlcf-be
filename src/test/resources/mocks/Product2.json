@@ -1,0 +1,11 @@
+{
+  "id": 10001,
+  "userId": 10001,
+  "invoiceNumber": 9223372036854775806,
+  "item": "HERITAGE_MILK MAGIC PELLETS",
+  "quantity": 1,
+  "variant": 40,
+  "price": 1200,
+  "amount": 1200,
+  "date": "05-03-2024"
+}

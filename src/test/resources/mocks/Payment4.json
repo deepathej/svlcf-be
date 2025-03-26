@@ -1,0 +1,10 @@
+{
+  "id": 10002,
+  "userId": 10003,
+  "paymentMode": "DISCOUNT",
+  "paymentType": "PAYMENT",
+  "previousBalance": 5000,
+  "paymentAmount": 5000,
+  "balanceAmount": 0,
+  "userType": "SUPPLIER"
+}

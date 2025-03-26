@@ -1,0 +1,8 @@
+{
+  "invoiceNumber": 9223372036854775806,
+  "productIds": "10000, 10001",
+  "userId": 10001,
+  "saleAmount": 3800,
+  "userUpdatedBalance": 10000,
+  "date": "2024-05-03"
+}

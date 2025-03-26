@@ -1,0 +1,5 @@
+{
+  "id": 1000,
+  "type": "delTrans",
+  "data": "{\"id\":291,\"amount\":1000,\"paymentMode\":\"CASH\",\"remarks\":\"SAMPLEEXPENSIS\",\"date\":\"2024-06-24\"}"
+}

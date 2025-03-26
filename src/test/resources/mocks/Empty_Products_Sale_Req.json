@@ -1,0 +1,12 @@
+{
+  "saleProducts": [],
+  "user": {
+    "id": 10001,
+    "name": "SAMPLE_NEW_CONSUMER_WITH_BALANCE",
+    "address": "SAMPLE_ADDRESS",
+    "phoneNumber": "8106330470",
+    "balance": 10000,
+    "userType": "CONSUMER",
+    "gstin": "15HGTJHN56GFTFG"
+  }
+}

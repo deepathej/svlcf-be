@@ -1,0 +1,29 @@
+{
+  "saleProducts": [
+    {
+      "id": 10000,
+      "name": "MILK MAGIC FEED",
+      "brand": "HERITAGE",
+      "price": 1300,
+      "quantity": 2,
+      "variant": 50
+    },
+    {
+      "id": 10001,
+      "name": "MILK MAGIC PELLETS",
+      "brand": "HERITAGE",
+      "price": 1200,
+      "quantity": 1,
+      "variant": 40
+    }
+  ],
+  "user": {
+    "id": 10000,
+    "name": "SAMPLE_NEW_SUPPLIER_WITH_BALANCE",
+    "address": "SAMPLE_ADDRESS",
+    "phoneNumber": "8106330470",
+    "userType": "SUPPLIER",
+    "balance": 10000,
+    "gstin": "15HGTJHN56GFTFG"
+  }
+}

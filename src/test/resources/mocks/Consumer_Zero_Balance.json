@@ -1,0 +1,9 @@
+{
+  "id": 10000,
+  "name": "SAMPLE_NEW_CONSUMER_BALANCE_ZERO",
+  "address": "SAMPLE_ADDRESS",
+  "phoneNumber": "8106330470",
+  "balance": 0,
+  "userType": "CONSUMER",
+  "gstin": "15HGTJHN56GFTFG"
+}

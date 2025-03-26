@@ -1,0 +1,9 @@
+{
+  "id": 10002,
+  "name": "SAMPLE_NEW_SUPPLIER_BALANCE_ZERO",
+  "address": "SAMPLE_ADDRESS",
+  "phoneNumber": "8106330470",
+  "balance": 0,
+  "userType": "SUPPLIER",
+  "gstin": "15HGTJHN56GFTFG"
+}
