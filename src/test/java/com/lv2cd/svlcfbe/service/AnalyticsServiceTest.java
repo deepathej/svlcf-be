@@ -2,7 +2,6 @@ package com.lv2cd.svlcfbe.service;
 
 import static com.lv2cd.svlcfbe.util.CommonTestMethods.getDataHealthGraph;
 import static com.lv2cd.svlcfbe.util.Constants.*;
-import static com.lv2cd.svlcfbe.util.TestConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 

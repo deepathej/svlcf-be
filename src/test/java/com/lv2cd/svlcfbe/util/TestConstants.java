@@ -43,8 +43,6 @@ public class TestConstants {
       "PreviousCashBalance:100000,AccountBalance:100000,PreviousAccountBalance:100000,CashBalance:91000";
   public static final String CAAC_CA =
       "PreviousCashBalance:100000,AccountBalance:110000,PreviousAccountBalance:100000,CashBalance:81000";
-  public static final String CAAC_AC =
-      "PreviousCashBalance:100000,AccountBalance:90000,PreviousAccountBalance:100000,CashBalance:101000";
   public static final String ERROR_EXTENSION_FOR_PDF_GENERATORS =
       ".pdf (The system cannot find the path specified)";
   public static final String INVALID_ROOT_PATH = "InvalidRootPath";

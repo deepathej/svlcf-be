@@ -211,23 +211,27 @@ public class SalesService {
             .filter(sale -> sale.getInvoiceNumber().equals(invoiceId))
             .findFirst()
             .orElseThrow(() -> new CustomBadRequestException(DELETE_OPERATION_CANNOT_BE_PERFORMED));
-    if (salesList.stream()
-        .filter(sale -> Objects.equals(sale.getUserId(), sales.getUserId()))
-        .map(Sales::getInvoiceNumber)
-        .noneMatch(invoiceNumber -> invoiceNumber > invoiceId)) {
-      salesRepository.updateTechDetailsForSale(invoiceId, L_TECHNICAL_USERID, I_ZERO, I_ZERO);
-      StringBuilder stringBuilder = updateProductDetailsWithTechUser(sales);
-      userService.directUpdateUserBalance(
-          sales.getUserId(),
-          userService.getUserById(sales.getUserId()).getBalance() - sales.getSaleAmount());
-      deletedTransactionRepo.save(
-          new DelTrans(
-              svlcfService.getAvailableIdByName(DEL_TRANS_STRING),
-              SALES_STRING,
-              writeAsJson(sales) + stringBuilder));
-      return generateDuplicateInvoice(invoiceId);
+    if (isNotLatestInvoice(invoiceId, salesList, sales.getUserId())) {
+      throw new CustomBadRequestException(DELETE_OPERATION_CANNOT_BE_PERFORMED);
     }
-    throw new CustomBadRequestException(DELETE_OPERATION_CANNOT_BE_PERFORMED);
+    salesRepository.updateTechDetailsForSale(invoiceId, L_TECHNICAL_USERID, I_ZERO, I_ZERO);
+    StringBuilder stringBuilder = updateProductDetailsWithTechUser(sales);
+    userService.directUpdateUserBalance(
+        sales.getUserId(),
+        userService.getUserById(sales.getUserId()).getBalance() - sales.getSaleAmount());
+    deletedTransactionRepo.save(
+        new DelTrans(
+            svlcfService.getAvailableIdByName(DEL_TRANS_STRING),
+            SALES_STRING,
+            writeAsJson(sales) + stringBuilder));
+    return generateDuplicateInvoice(invoiceId);
+  }
+
+  private static boolean isNotLatestInvoice(Long invoiceId, List<Sales> salesList, Long userId) {
+    return salesList.parallelStream()
+        .filter(sale -> Objects.equals(sale.getUserId(), userId))
+        .map(Sales::getInvoiceNumber)
+        .anyMatch(invoiceNumber -> invoiceNumber > invoiceId);
   }
 
   private StringBuilder updateProductDetailsWithTechUser(Sales sales) {

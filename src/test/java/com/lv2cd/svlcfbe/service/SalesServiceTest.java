@@ -5,8 +5,7 @@ import static com.lv2cd.svlcfbe.util.CommonMethods.getCurrentDate;
 import static com.lv2cd.svlcfbe.util.CommonTestMethods.*;
 import static com.lv2cd.svlcfbe.util.Constants.*;
 import static com.lv2cd.svlcfbe.util.TestConstants.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -181,8 +180,34 @@ class SalesServiceTest {
     when(invoiceService.generateInvoice(
             List.of(stock1, stock2), L_TEST_INVOICE_NUMBER, user, sales.getDate()))
         .thenReturn(TEST_SAMPLE_PATH);
-    salesService.generateDuplicateInvoice(L_TEST_INVOICE_NUMBER);
+    assertNotNull(TEST_SAMPLE_PATH, salesService.generateDuplicateInvoice(L_TEST_INVOICE_NUMBER));
   }
+
+  @Test
+  void testUpdateExistingInvoiceWithTech(){
+    when(salesRepository.findAll()).thenReturn(List.of(getSales()));
+    Exception thrown = assertThrows(CustomBadRequestException.class,
+            () -> salesService.updateExistingInvoiceWithTech(L_TEST_INVOICE_NUMBER + L_ONE), EXCEPTION_NOT_THROWN);
+    assertEquals(DELETE_OPERATION_CANNOT_BE_PERFORMED, thrown.getMessage());
+  }
+
+  @Test
+  void testUpdateExistingInvoiceButNotLatest(){
+    Sales sales = getSales();
+    sales.setInvoiceNumber(sales.getInvoiceNumber() + L_ONE);
+    when(salesRepository.findAll()).thenReturn(List.of(getSales(), sales));
+    Exception thrown = assertThrows(CustomBadRequestException.class,
+            () -> salesService.updateExistingInvoiceWithTech(L_TEST_INVOICE_NUMBER), EXCEPTION_NOT_THROWN);
+    assertEquals(DELETE_OPERATION_CANNOT_BE_PERFORMED, thrown.getMessage());
+  }
+
+  /*@Test
+  void testUpdateExistingInvoiceWithTechSuccess(){
+    when(salesRepository.findAll()).thenReturn(List.of(getSales()));
+    doNothing().when(salesRepository).updateTechDetailsForSale(L_TEST_INVOICE_NUMBER, L_TECHNICAL_USERID, I_ZERO,
+            I_ZERO);
+    String str = salesService.updateExistingInvoiceWithTech(L_TEST_INVOICE_NUMBER);
+  }*/
 
   @Test
   void testGetLastSaleInvoiceWhenNoInvoice(){

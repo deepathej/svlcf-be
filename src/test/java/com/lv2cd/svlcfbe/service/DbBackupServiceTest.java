@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import com.lv2cd.svlcfbe.config.SvlcfConfig;
-import com.lv2cd.svlcfbe.entity.*;
 import com.lv2cd.svlcfbe.exception.CustomInternalServerException;
 import com.lv2cd.svlcfbe.repository.*;
 import java.io.File;
